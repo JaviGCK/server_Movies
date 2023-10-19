@@ -17,7 +17,7 @@ app.use(fileUpload({
 }));
 app.use(express.json());
 
-// Rutas
+
 app.use('/users', usersRoutes);
 app.use('/movies', moviesRoutes);
 app.use('/genres', genresRoutes);
