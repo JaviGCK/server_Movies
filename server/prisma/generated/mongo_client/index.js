@@ -30,13 +30,15 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.4.1
- * Query Engine version: 2f302df92bd8945e20ad4595a73def5b96afa54f
+ * Prisma Client JS version: 5.1.1
+ * Query Engine version: 6a3747c37ff169c90047725a05a6ef02e32ac97e
  */
 Prisma.prismaVersion = {
-  client: "5.4.1",
-  engine: "2f302df92bd8945e20ad4595a73def5b96afa54f"
+  client: "5.1.1",
+  engine: "6a3747c37ff169c90047725a05a6ef02e32ac97e"
 }
+
+false
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
 Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError
@@ -132,7 +134,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/javiergarciacabello/Desktop/Assembler/backend/Movies-hub_server/server/prisma/generated/mongo_client",
+      "value": "/Users/javiergarciacabello/Desktop/Assembler/backend/server_Movies/server_Movies/server/prisma/generated/mongo_client",
       "fromEnvVar": null
     },
     "config": {
@@ -153,24 +155,14 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.4.1",
-  "engineVersion": "2f302df92bd8945e20ad4595a73def5b96afa54f",
+  "clientVersion": "5.1.1",
+  "engineVersion": "6a3747c37ff169c90047725a05a6ef02e32ac97e",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "mongodb",
-  "postinstall": false,
-  "inlineDatasources": {
-    "db": {
-      "url": {
-        "fromEnvVar": "MONGO_CLUSTER_URI",
-        "value": null
-      }
-    }
-  },
-  "inlineSchema": "Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAicHJpc21hLWNsaWVudC1qcyIKICBvdXRwdXQgICA9ICIuL2dlbmVyYXRlZC9tb25nb19jbGllbnQiCn0KCmRhdGFzb3VyY2UgZGIgewogIHByb3ZpZGVyID0gIm1vbmdvZGIiCiAgdXJsICAgICAgPSBlbnYoIk1PTkdPX0NMVVNURVJfVVJJIikKfQoKbW9kZWwgVXNlciB7CiAgaWQgICAgICAgIFN0cmluZyAgIEBpZCBAZGVmYXVsdChhdXRvKCkpIEBtYXAoIl9pZCIpIEBkYi5PYmplY3RJZAogIG5hbWUgICAgICBTdHJpbmcKICBlbWFpbCAgICAgU3RyaW5nICAgQHVuaXF1ZQogIG1vdmllcyAgICBNb3ZpZVtdCiAgY3JlYXRlZEF0IERhdGVUaW1lIEBkZWZhdWx0KG5vdygpKQogIHVwZGF0ZUF0ICBEYXRlVGltZSBAdXBkYXRlZEF0Cn0KCm1vZGVsIE1vdmllIHsKICBpZCAgICAgICAgICBTdHJpbmcgICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAZGIuT2JqZWN0SWQKICBuYW1lICAgICAgICBTdHJpbmcKICB1cmwgICAgICAgICBTdHJpbmcKICBzY29yZSAgICAgICBJbnQKICBkZXNjcmlwdGlvbiBTdHJpbmcKICBnZW5yZXMgICAgICBHZW5yZVtdCiAgY3JlYXRlZEF0ICAgRGF0ZVRpbWUgQGRlZmF1bHQobm93KCkpCiAgdXBkYXRlQXQgICAgRGF0ZVRpbWUgQHVwZGF0ZWRBdAogIFVzZXIgICAgICAgIFVzZXI/ICAgIEByZWxhdGlvbihmaWVsZHM6IFt1c2VySWRdLCByZWZlcmVuY2VzOiBbaWRdLCBvbkRlbGV0ZTogQ2FzY2FkZSkKICB1c2VySWQgICAgICBTdHJpbmc/ICBAZGIuT2JqZWN0SWQKfQoKbW9kZWwgR2VucmUgewogIGlkICAgICAgU3RyaW5nICBAaWQgQGRlZmF1bHQoYXV0bygpKSBAbWFwKCJfaWQiKSBAZGIuT2JqZWN0SWQKICBuYW1lICAgIFN0cmluZwogIE1vdmllICAgTW92aWU/ICBAcmVsYXRpb24oZmllbGRzOiBbbW92aWVJZF0sIHJlZmVyZW5jZXM6IFtpZF0sIG9uRGVsZXRlOiBDYXNjYWRlKQogIG1vdmllSWQgU3RyaW5nPyBAZGIuT2JqZWN0SWQKfQo=",
-  "inlineSchemaHash": "b01c03ce5aa58972735a32affe7f0a19bacbd6218ae3c5656babb2ba3bcff3ab",
-  "noEngine": false
+  "dataProxy": false,
+  "postinstall": false
 }
 
 const fs = require('fs')
@@ -195,6 +187,8 @@ defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 
 
 
+
+
 const { warnEnvConflicts } = require('./runtime/library')
 
 warnEnvConflicts({
@@ -206,9 +200,7 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-// file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
 path.join(process.cwd(), "prisma/generated/mongo_client/libquery_engine-darwin-arm64.dylib.node")
-// file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/mongo_client/schema.prisma")

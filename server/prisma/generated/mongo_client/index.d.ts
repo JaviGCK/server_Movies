@@ -46,7 +46,7 @@ export type Genre = $Result.DefaultSelection<Prisma.$GenrePayload>
 export class PrismaClient<
   T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
   U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
-  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
@@ -205,8 +205,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.4.1
-   * Query Engine version: 2f302df92bd8945e20ad4595a73def5b96afa54f
+   * Prisma Client JS version: 5.1.1
+   * Query Engine version: 6a3747c37ff169c90047725a05a6ef02e32ac97e
    */
   export type PrismaVersion = {
     client: string
@@ -631,11 +631,11 @@ export namespace Prisma {
   }
 
 
-  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>> {
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.Args}, $Utils.Record<string, any>> {
     returns: Prisma.TypeMap<this['params']['extArgs']>
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
       modelProps: 'user' | 'movie' | 'genre'
       txIsolationLevel: never
@@ -878,19 +878,18 @@ export namespace Prisma {
   export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+
   export interface PrismaClientOptions {
     /**
      * Overwrites the datasource url from your schema.prisma file
      */
     datasources?: Datasources
-    /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
-    datasourceUrl?: string
+
     /**
      * @default "colorless"
      */
     errorFormat?: ErrorFormat
+
     /**
      * @example
      * ```
@@ -899,15 +898,15 @@ export namespace Prisma {
      * 
      * // Emit as events
      * log: [
-     *   { emit: 'stdout', level: 'query' },
-     *   { emit: 'stdout', level: 'info' },
-     *   { emit: 'stdout', level: 'warn' }
-     *   { emit: 'stdout', level: 'error' }
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
      * ]
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
-    log?: (LogLevel | LogDefinition)[]
+    log?: Array<LogLevel | LogDefinition>
   }
 
   /* Types for Logging */
@@ -1003,7 +1002,7 @@ export namespace Prisma {
     movies: number
   }
 
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     movies?: boolean | UserCountOutputTypeCountMoviesArgs
   }
 
@@ -1012,7 +1011,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the UserCountOutputType
      */
@@ -1023,7 +1022,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMoviesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountMoviesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: MovieWhereInput
   }
 
@@ -1037,7 +1036,7 @@ export namespace Prisma {
     genres: number
   }
 
-  export type MovieCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     genres?: boolean | MovieCountOutputTypeCountGenresArgs
   }
 
@@ -1046,7 +1045,7 @@ export namespace Prisma {
   /**
    * MovieCountOutputType without action
    */
-  export type MovieCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the MovieCountOutputType
      */
@@ -1057,7 +1056,7 @@ export namespace Prisma {
   /**
    * MovieCountOutputType without action
    */
-  export type MovieCountOutputTypeCountGenresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieCountOutputTypeCountGenresArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: GenreWhereInput
   }
 
@@ -1128,7 +1127,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which User to aggregate.
      */
@@ -1188,7 +1187,7 @@ export namespace Prisma {
 
 
 
-  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
     orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
     by: UserScalarFieldEnum[] | UserScalarFieldEnum
@@ -1225,7 +1224,7 @@ export namespace Prisma {
     >
 
 
-  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UserSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     email?: boolean
@@ -1243,18 +1242,18 @@ export namespace Prisma {
     updateAt?: boolean
   }
 
-  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     movies?: boolean | User$moviesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
-  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type $UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
       movies: Prisma.$MoviePayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetPayloadResult<{
+    scalars: $Extensions.GetResult<{
       id: string
       name: string
       email: string
@@ -1267,12 +1266,12 @@ export namespace Prisma {
 
   type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
-  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+  type UserCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
     Omit<UserFindManyArgs, 'select' | 'include'> & {
       select?: UserCountAggregateInputType | true
     }
 
-  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface UserDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
      * Find zero or one User that matches the filter.
@@ -1649,7 +1648,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     movies<T extends User$moviesArgs<ExtArgs> = {}>(args?: Subset<T, User$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -1695,7 +1694,7 @@ export namespace Prisma {
   /**
    * User findUnique
    */
-  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1714,7 +1713,7 @@ export namespace Prisma {
   /**
    * User findUniqueOrThrow
    */
-  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1733,7 +1732,7 @@ export namespace Prisma {
   /**
    * User findFirst
    */
-  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1782,7 +1781,7 @@ export namespace Prisma {
   /**
    * User findFirstOrThrow
    */
-  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1831,7 +1830,7 @@ export namespace Prisma {
   /**
    * User findMany
    */
-  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1875,7 +1874,7 @@ export namespace Prisma {
   /**
    * User create
    */
-  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1894,7 +1893,7 @@ export namespace Prisma {
   /**
    * User createMany
    */
-  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Users.
      */
@@ -1905,7 +1904,7 @@ export namespace Prisma {
   /**
    * User update
    */
-  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1928,7 +1927,7 @@ export namespace Prisma {
   /**
    * User updateMany
    */
-  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Users.
      */
@@ -1943,7 +1942,7 @@ export namespace Prisma {
   /**
    * User upsert
    */
-  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1970,7 +1969,7 @@ export namespace Prisma {
   /**
    * User delete
    */
-  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -1989,7 +1988,7 @@ export namespace Prisma {
   /**
    * User deleteMany
    */
-  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Users to delete
      */
@@ -2000,7 +1999,7 @@ export namespace Prisma {
   /**
    * User findRaw
    */
-  export type UserFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindRawArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -2015,7 +2014,7 @@ export namespace Prisma {
   /**
    * User aggregateRaw
    */
-  export type UserAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserAggregateRawArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -2030,7 +2029,7 @@ export namespace Prisma {
   /**
    * User.movies
    */
-  export type User$moviesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$moviesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2051,7 +2050,7 @@ export namespace Prisma {
   /**
    * User without action
    */
-  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -2161,7 +2160,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type MovieAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Movie to aggregate.
      */
@@ -2233,7 +2232,7 @@ export namespace Prisma {
 
 
 
-  export type MovieGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: MovieWhereInput
     orderBy?: MovieOrderByWithAggregationInput | MovieOrderByWithAggregationInput[]
     by: MovieScalarFieldEnum[] | MovieScalarFieldEnum
@@ -2277,7 +2276,7 @@ export namespace Prisma {
     >
 
 
-  export type MovieSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type MovieSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     url?: boolean
@@ -2302,20 +2301,20 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type MovieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     genres?: boolean | Movie$genresArgs<ExtArgs>
     User?: boolean | Movie$UserArgs<ExtArgs>
     _count?: boolean | MovieCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
-  export type $MoviePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type $MoviePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "Movie"
     objects: {
       genres: Prisma.$GenrePayload<ExtArgs>[]
       User: Prisma.$UserPayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetPayloadResult<{
+    scalars: $Extensions.GetResult<{
       id: string
       name: string
       url: string
@@ -2331,12 +2330,12 @@ export namespace Prisma {
 
   type MovieGetPayload<S extends boolean | null | undefined | MovieDefaultArgs> = $Result.GetResult<Prisma.$MoviePayload, S>
 
-  type MovieCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+  type MovieCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
     Omit<MovieFindManyArgs, 'select' | 'include'> & {
       select?: MovieCountAggregateInputType | true
     }
 
-  export interface MovieDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface MovieDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Movie'], meta: { name: 'Movie' } }
     /**
      * Find zero or one Movie that matches the filter.
@@ -2713,7 +2712,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__MovieClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__MovieClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     genres<T extends Movie$genresArgs<ExtArgs> = {}>(args?: Subset<T, Movie$genresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GenrePayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -2764,7 +2763,7 @@ export namespace Prisma {
   /**
    * Movie findUnique
    */
-  export type MovieFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2783,7 +2782,7 @@ export namespace Prisma {
   /**
    * Movie findUniqueOrThrow
    */
-  export type MovieFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2802,7 +2801,7 @@ export namespace Prisma {
   /**
    * Movie findFirst
    */
-  export type MovieFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2851,7 +2850,7 @@ export namespace Prisma {
   /**
    * Movie findFirstOrThrow
    */
-  export type MovieFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2900,7 +2899,7 @@ export namespace Prisma {
   /**
    * Movie findMany
    */
-  export type MovieFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2944,7 +2943,7 @@ export namespace Prisma {
   /**
    * Movie create
    */
-  export type MovieCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2963,7 +2962,7 @@ export namespace Prisma {
   /**
    * Movie createMany
    */
-  export type MovieCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Movies.
      */
@@ -2974,7 +2973,7 @@ export namespace Prisma {
   /**
    * Movie update
    */
-  export type MovieUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -2997,7 +2996,7 @@ export namespace Prisma {
   /**
    * Movie updateMany
    */
-  export type MovieUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Movies.
      */
@@ -3012,7 +3011,7 @@ export namespace Prisma {
   /**
    * Movie upsert
    */
-  export type MovieUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -3039,7 +3038,7 @@ export namespace Prisma {
   /**
    * Movie delete
    */
-  export type MovieDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -3058,7 +3057,7 @@ export namespace Prisma {
   /**
    * Movie deleteMany
    */
-  export type MovieDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Movies to delete
      */
@@ -3069,7 +3068,7 @@ export namespace Prisma {
   /**
    * Movie findRaw
    */
-  export type MovieFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieFindRawArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -3084,7 +3083,7 @@ export namespace Prisma {
   /**
    * Movie aggregateRaw
    */
-  export type MovieAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieAggregateRawArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -3099,7 +3098,7 @@ export namespace Prisma {
   /**
    * Movie.genres
    */
-  export type Movie$genresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Movie$genresArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3120,7 +3119,7 @@ export namespace Prisma {
   /**
    * Movie.User
    */
-  export type Movie$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Movie$UserArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -3136,7 +3135,7 @@ export namespace Prisma {
   /**
    * Movie without action
    */
-  export type MovieDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MovieDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -3198,7 +3197,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type GenreAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Genre to aggregate.
      */
@@ -3258,7 +3257,7 @@ export namespace Prisma {
 
 
 
-  export type GenreGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: GenreWhereInput
     orderBy?: GenreOrderByWithAggregationInput | GenreOrderByWithAggregationInput[]
     by: GenreScalarFieldEnum[] | GenreScalarFieldEnum
@@ -3293,7 +3292,7 @@ export namespace Prisma {
     >
 
 
-  export type GenreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type GenreSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     movieId?: boolean
@@ -3306,17 +3305,17 @@ export namespace Prisma {
     movieId?: boolean
   }
 
-  export type GenreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     Movie?: boolean | Genre$MovieArgs<ExtArgs>
   }
 
 
-  export type $GenrePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type $GenrePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "Genre"
     objects: {
       Movie: Prisma.$MoviePayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetPayloadResult<{
+    scalars: $Extensions.GetResult<{
       id: string
       name: string
       movieId: string | null
@@ -3327,12 +3326,12 @@ export namespace Prisma {
 
   type GenreGetPayload<S extends boolean | null | undefined | GenreDefaultArgs> = $Result.GetResult<Prisma.$GenrePayload, S>
 
-  type GenreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+  type GenreCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
     Omit<GenreFindManyArgs, 'select' | 'include'> & {
       select?: GenreCountAggregateInputType | true
     }
 
-  export interface GenreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface GenreDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Genre'], meta: { name: 'Genre' } }
     /**
      * Find zero or one Genre that matches the filter.
@@ -3709,7 +3708,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__GenreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__GenreClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     Movie<T extends Genre$MovieArgs<ExtArgs> = {}>(args?: Subset<T, Genre$MovieArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
@@ -3753,7 +3752,7 @@ export namespace Prisma {
   /**
    * Genre findUnique
    */
-  export type GenreFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3772,7 +3771,7 @@ export namespace Prisma {
   /**
    * Genre findUniqueOrThrow
    */
-  export type GenreFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3791,7 +3790,7 @@ export namespace Prisma {
   /**
    * Genre findFirst
    */
-  export type GenreFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3840,7 +3839,7 @@ export namespace Prisma {
   /**
    * Genre findFirstOrThrow
    */
-  export type GenreFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3889,7 +3888,7 @@ export namespace Prisma {
   /**
    * Genre findMany
    */
-  export type GenreFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3933,7 +3932,7 @@ export namespace Prisma {
   /**
    * Genre create
    */
-  export type GenreCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3952,7 +3951,7 @@ export namespace Prisma {
   /**
    * Genre createMany
    */
-  export type GenreCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Genres.
      */
@@ -3963,7 +3962,7 @@ export namespace Prisma {
   /**
    * Genre update
    */
-  export type GenreUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -3986,7 +3985,7 @@ export namespace Prisma {
   /**
    * Genre updateMany
    */
-  export type GenreUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Genres.
      */
@@ -4001,7 +4000,7 @@ export namespace Prisma {
   /**
    * Genre upsert
    */
-  export type GenreUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -4028,7 +4027,7 @@ export namespace Prisma {
   /**
    * Genre delete
    */
-  export type GenreDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -4047,7 +4046,7 @@ export namespace Prisma {
   /**
    * Genre deleteMany
    */
-  export type GenreDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Filter which Genres to delete
      */
@@ -4058,7 +4057,7 @@ export namespace Prisma {
   /**
    * Genre findRaw
    */
-  export type GenreFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreFindRawArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -4073,7 +4072,7 @@ export namespace Prisma {
   /**
    * Genre aggregateRaw
    */
-  export type GenreAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreAggregateRawArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -4088,7 +4087,7 @@ export namespace Prisma {
   /**
    * Genre.Movie
    */
-  export type Genre$MovieArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Genre$MovieArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Movie
      */
@@ -4104,7 +4103,7 @@ export namespace Prisma {
   /**
    * Genre without action
    */
-  export type GenreDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type GenreDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Genre
      */
@@ -5359,25 +5358,17 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
-     * @deprecated Use UserCountOutputTypeDefaultArgs instead
-     */
-    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use MovieCountOutputTypeDefaultArgs instead
-     */
-    export type MovieCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MovieCountOutputTypeDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use UserDefaultArgs instead
      */
-    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    export type UserArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
     /**
      * @deprecated Use MovieDefaultArgs instead
      */
-    export type MovieArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MovieDefaultArgs<ExtArgs>
+    export type MovieArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = MovieDefaultArgs<ExtArgs>
     /**
      * @deprecated Use GenreDefaultArgs instead
      */
-    export type GenreArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GenreDefaultArgs<ExtArgs>
+    export type GenreArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = GenreDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
