@@ -70,7 +70,7 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
     const { userId } = req.params;
-    const { name, email, password } = req.body;
+    const { name, email } = req.body;
 
     try {
         const updatedUser = await prismaClient.user.update({
@@ -80,7 +80,7 @@ export const updateUser = async (req: Request, res: Response) => {
             data: {
                 name,
                 email,
-                password,
+
             },
         });
         res.status(200).send(updatedUser);

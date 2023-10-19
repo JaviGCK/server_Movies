@@ -15,8 +15,8 @@ export const createGenres = async (req: Request, res: Response) => {
                 genres: true
             }
         });
+        if (movie !== undefined) {
 
-        if (movie?.genres?.length < 3) {
             const newGenre = await prismaClient.genre.create({
                 data: {
                     name,
@@ -31,12 +31,14 @@ export const createGenres = async (req: Request, res: Response) => {
             return res.status(200).send(newGenre);
         } else {
             return res.status(400).send("Only 3 genres per movie");
+
         }
     } catch (error) {
         console.error('Error creating genre:', error);
         return res.status(500).send("Internal Server Error");
     }
 }
+
 
 export const getAllGenres = async (req: Request, res: Response) => {
     try {

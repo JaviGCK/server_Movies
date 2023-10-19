@@ -88,7 +88,7 @@ export const updateMovie = async (req: Request, res: Response) => {
                 data: {
                     name,
                     url: upload.secure_url,
-                    score: converToType(score),
+                    score: score,
                     description: description
                 }
             });
