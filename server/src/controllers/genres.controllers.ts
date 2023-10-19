@@ -16,22 +16,22 @@ export const createGenres = async (req: Request, res: Response) => {
             }
         });
         if (movie !== undefined) {
-
-            const newGenre = await prismaClient.genre.create({
-                data: {
-                    name,
-                    Movie: {
-                        connect: {
-                            id: converToType(moviesId)
+            if (movie?.genres?.length !== undefined && movie.genres.length < 3) {
+                const newGenre = await prismaClient.genre.create({
+                    data: {
+                        name,
+                        Movie: {
+                            connect: {
+                                id: (moviesId)
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            return res.status(200).send(newGenre);
-        } else {
-            return res.status(400).send("Only 3 genres per movie");
-
+                return res.status(200).send(newGenre);
+            } else {
+                return res.status(400).send("Only 3 genres per movie");
+            }
         }
     } catch (error) {
         console.error('Error creating genre:', error);
