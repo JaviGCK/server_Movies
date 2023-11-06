@@ -18,9 +18,9 @@ app.use(fileUpload({
 app.use(express.json());
 
 
-app.use('/users', usersRoutes);
-app.use('/movies', moviesRoutes);
-app.use('/genres', genresRoutes);
+app.use('/users', checkJwt, usersRoutes);
+app.use('/movies', checkJwt, moviesRoutes);
+app.use('/genres', checkJwt, genresRoutes);
 
 app.get("/", (req: Request, res: Response) => {
     res.status(200).json({ message: "Welcome to the API World" });
