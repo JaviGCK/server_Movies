@@ -33,7 +33,5 @@ app.get("/hi", (req: Request, res: Response) => {
     res.status(200).json({ message: "HI" })
 })
 
-app.use(errorHandler)
-
 
 export default app;
