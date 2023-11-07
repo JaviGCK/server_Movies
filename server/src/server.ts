@@ -9,18 +9,21 @@ import config from "./config/config";
 
 const app: Express = express();
 const corsOptions = {
-    origin: config.app.ORIGIN
-}
+    origin: config.app.ORIGIN,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: './uploads'
 }));
 app.use(express.json());
-
 
 app.use('/users', checkJwt, usersRoutes);
 app.use('/movies', checkJwt, moviesRoutes);
@@ -29,9 +32,9 @@ app.use('/genres', checkJwt, genresRoutes);
 app.get("/", (req: Request, res: Response) => {
     res.status(200).json({ message: "Welcome to the API World" });
 });
-app.get("/hi", (req: Request, res: Response) => {
-    res.status(200).json({ message: "HI" })
-})
 
+app.get("/hi", (req: Request, res: Response) => {
+    res.status(200).json({ message: "HI" });
+});
 
 export default app;
