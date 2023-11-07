@@ -9,17 +9,12 @@ import config from "./config/config";
 
 const app: Express = express();
 const corsOptions = {
-    origin: 'https://client-movies-hub.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-};
-
-
+    origin: config.app.ORIGIN
+}
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: './uploads'
