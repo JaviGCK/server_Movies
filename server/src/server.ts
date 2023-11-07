@@ -9,12 +9,13 @@ import config from "./config/config";
 
 const app: Express = express();
 const corsOptions = {
-    origin: config.app.ORIGIN,
+    origin: 'https://client-movies-hub.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
-    allowedHeaders: ['Content-Type', 'Authorization'],
 };
+
+
 
 app.use(morgan('dev'));
 app.use(helmet());
